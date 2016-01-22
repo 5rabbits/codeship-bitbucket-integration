@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var request = require('request-json')
 var app = express();
 
-app.listen(3000);
+app.listen(process.env.PORT);
 
 app.use('/bitbucket', bodyParser.json());
 
