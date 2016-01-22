@@ -43,7 +43,7 @@ app.post('/bitbucket', function (req, res){
   var client = request.createClient(bitbucketBaseUrl);
   var bitbucketApiKey = process.env.BITBUCKET_API_KEY;
   var bitbucketUser = process.env.BITBUCKET_USER;
-  client.headers["Authorization"] = bitbucketUser + " " + bitbucketApiKey;
+  client.setBasicAuth(bitbucketUser, bitbucketApiKey);
   var statusInfo = {
     "state": bitbucketStatus,
     "key": bitbucketKey,
