@@ -24,8 +24,10 @@ app.post('/bitbucket', function (req, res){
     case "testing":
     case "waiting":
       var bitbucketStatus = "INPROGRESS";
+      break;
     case "success":
       var bitbucketStatus = "SUCCESSFUL";
+      break;
     case "error":
     case "stopped":
     case "ignored":
