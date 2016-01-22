@@ -9,7 +9,7 @@ app.use('/bitbucket', bodyParser.json());
 
 app.post('/bitbucket', function (req, res){
   var payload = req.body;
-  //console.log(payload);
+  console.log("Payload: " +payload);
   var codeshipProjectName = payload["build"]["project_name"].split("/");
   var codeshipStatus = payload["build"]["status"];
 
@@ -39,7 +39,7 @@ app.post('/bitbucket', function (req, res){
 
   var client = request.createClient(bitbucketBaseUrl);
   var bitbucketApiKey = process.env.BITBUCKET_API_KEY;
-  var bitbucketUser = process.env.BITBUCKET_USER
+  var bitbucketUser = process.env.BITBUCKET_USER;
   client.headers["Authorization"] = bitbucketUser + " " + bitbucketApiKey;
   var statusInfo = {
     "state": bitbucketStatus,
@@ -47,7 +47,8 @@ app.post('/bitbucket', function (req, res){
     "name": bitbucketName,
     "url": payload["build"]["build_url"],
     "description": bitbucketDescription
-  }
+  };
+  console.log("statusInfo:" + statusInfo);
   client.post(bitbucketBuildStatusEndpoint, statusInfo, function(err, res, body) {
     console.log(res.statusCode);
     console.log(body);
